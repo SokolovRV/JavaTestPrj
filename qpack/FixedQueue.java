@@ -10,19 +10,19 @@ public class FixedQueue implements ICharQ {
 	}
 
 
-	public void put (char ch) {
+	public void put (char ch)
+		throws QueueFullException {
 		if(putloc==q.length-1) {
-			System.out.println(" - Ochered' zapolnena");
-			return;
+			throw new QueueFullException(q.length-1);
 		}
 		putloc++;
 		q[putloc] = ch;
 	}
 
-	public char get() {
+	public char get() 
+		throws QueueEmptyException {
 		if(getloc==putloc) {
-			System.out.println(" - Ochered' pusta");
-			return (char) 0;
+			throw new QueueEmptyException();
 		}
 		getloc++;
 		return q[getloc];
@@ -34,6 +34,7 @@ public class FixedQueue implements ICharQ {
 		q = t; 
 	}
 }
+
 
 
 
